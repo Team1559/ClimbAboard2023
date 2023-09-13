@@ -16,7 +16,7 @@ public class DriveCommand extends CommandBase{
 
     @Override
     public void execute() {
-        driveTrain.drive(controller.getLeftStickY(), -1 * controller.getRightStickY());
+        driveTrain.drive(controller.getLeftStickYSquared(), -controller.getRightStickXSquared());//Rotation direction needs to be inverted
     }
 
     @Override 

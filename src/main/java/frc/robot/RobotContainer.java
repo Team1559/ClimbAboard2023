@@ -36,7 +36,7 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the trigger bindings
-    driveTrain = new DriveTrain(10, 5);
+    driveTrain = new DriveTrain(5, 10);
     driveCommand = new DriveCommand(driveTrain, controller);
     driveTrain.setDefaultCommand(driveCommand);
     configureBindings();
