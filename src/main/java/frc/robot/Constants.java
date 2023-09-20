@@ -13,5 +13,7 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
-    public static final double FEEDER_SPEED = 0.5;
+    public static final double FEEDER_SPEED = 1;
+    public static final double MAX_KIDDIE_DRIVE_VELOCITY_FORWARDS = 0.7;
+    public static final double MAX_KIDDIE_DRIVE_VELOCITY_ROTATION = 0.7;
 }

@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.lib.DTXboxController;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrain;
 
 public class DriveCommand extends CommandBase{
@@ -16,7 +17,19 @@ public class DriveCommand extends CommandBase{
 
     @Override
     public void execute() {
-        driveTrain.drive(controller.getLeftStickYSquared(), -controller.getRightStickXSquared());//Rotation direction needs to be inverted
+        double forwardSpeed = controller.getLeftStickYSquared();
+        double rotationSpeed = -controller.getRightStickXSquared();
+        if (!(controller.getRightBumper() && controller.getLeftBumper())) {
+            if (Math.abs(forwardSpeed) > Constants.MAX_KIDDIE_DRIVE_VELOCITY_FORWARDS) {
+                forwardSpeed = Math.copySign(Constants.MAX_KIDDIE_DRIVE_VELOCITY_FORWARDS, forwardSpeed);
+            }
+            if (Math.abs(rotationSpeed) > Constants.MAX_KIDDIE_DRIVE_VELOCITY_ROTATION) {
+                rotationSpeed = Math.copySign(Constants.MAX_KIDDIE_DRIVE_VELOCITY_ROTATION, rotationSpeed);
+            }
+
+            
+        }
+        driveTrain.drive(forwardSpeed, rotationSpeed);
     }
 
     @Override 

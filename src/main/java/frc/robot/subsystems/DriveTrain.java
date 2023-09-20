@@ -16,7 +16,7 @@ public class DriveTrain extends SubsystemBase{
         driveTrain = new DifferentialDrive(leftMotor, rightMotor);
     }
 
-    public void drive (double fowardSpeed, double rotation) {
-        driveTrain.arcadeDrive(fowardSpeed, rotation);
+    public void drive (double forwardSpeed, double rotation) {
+        driveTrain.arcadeDrive(forwardSpeed, rotation);
     }
 }
