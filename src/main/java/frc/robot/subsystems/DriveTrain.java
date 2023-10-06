@@ -1,22 +1,29 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+import edu.wpi.first.util.sendable.SendableBuilder;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import org.victorrobotics.dtlib.hardware.phoenix5.DTTalonSRX;
+import org.victorrobotics.dtlib.subsystem.DTSubsystem;
 
+public class DriveTrain extends DTSubsystem {
+  private final DifferentialDrive drive;
+  private final DTTalonSRX        leftMotor;
+  private final DTTalonSRX        rightMotor;
 
-public class DriveTrain extends SubsystemBase{
-    private DifferentialDrive driveTrain;
+  public DriveTrain(int leftID, int rightID) {
+    leftMotor = new DTTalonSRX(leftID);
+    rightMotor = new DTTalonSRX(rightID);
+    rightMotor.configOutputInverted(true);
+    drive = new DifferentialDrive(leftMotor.getMotorImpl(), rightMotor.getMotorImpl());
+  }
 
-    public DriveTrain(int leftID, int rightID) {
-        WPI_TalonSRX leftMotor = new WPI_TalonSRX(leftID);
-        WPI_TalonSRX rightMotor = new WPI_TalonSRX(rightID);
-        rightMotor.setInverted(true);
-        driveTrain = new DifferentialDrive(leftMotor, rightMotor);
-    }
+  public void drive(double forwardSpeed, double rotation) {
+    drive.arcadeDrive(forwardSpeed, rotation);
+  }
 
-    public void drive (double forwardSpeed, double rotation) {
-        driveTrain.arcadeDrive(forwardSpeed, rotation);
-    }
+  @Override
+  public void initSendable(SendableBuilder builder) {}
+
+  @Override
+  public void close() throws Exception {}
 }

@@ -1,23 +1,22 @@
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.FrisbeeFlinger;
+import org.victorrobotics.dtlib.command.DTCommandBase;
 
-public class FeederCommand extends CommandBase {
+public class FeederCommand extends DTCommandBase {
+  private FrisbeeFlinger flinger;
 
-    private FrisbeeFlinger flinger;
-    public FeederCommand(FrisbeeFlinger flinger) {
-        this.flinger = flinger;
-    }
+  public FeederCommand(FrisbeeFlinger flinger) {
+    this.flinger = flinger;
+  }
 
-    @Override
-    public void execute() {
-        flinger.spinFeeder();
-    }
+  @Override
+  public void execute() {
+    flinger.spinFeeder();
+  }
 
-    @Override
-    public void end(boolean interrupted) {
-        flinger.stopFeeder();
-    }
-
+  @Override
+  public void end() {
+    flinger.stopFeeder();
+  }
 }

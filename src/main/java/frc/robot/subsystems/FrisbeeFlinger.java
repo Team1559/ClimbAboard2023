@@ -1,33 +1,39 @@
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.util.sendable.SendableBuilder;
 import frc.robot.Constants;
+import org.victorrobotics.dtlib.hardware.phoenix5.DTTalonSRX;
+import org.victorrobotics.dtlib.subsystem.DTSubsystem;
 
-public class FrisbeeFlinger extends SubsystemBase {
-    private WPI_TalonSRX feederMotor;
-    private WPI_TalonSRX shooterMotor;
+public class FrisbeeFlinger extends DTSubsystem {
+  private DTTalonSRX feederMotor;
 
-    public FrisbeeFlinger(int feederID, int shooterID){
-        feederMotor = new WPI_TalonSRX(feederID);
-        shooterMotor = new WPI_TalonSRX(shooterID);
-    }
+  private DTTalonSRX shooterMotor;
 
-    public void spinShooter(double speed){
-        shooterMotor.set(TalonSRXControlMode.PercentOutput, speed);
-    }
-    
-    public void stopShooter(){
-        shooterMotor.set(TalonSRXControlMode.PercentOutput, 0);
-    }
-    
-    public void spinFeeder(){
-        feederMotor.set(TalonSRXControlMode.PercentOutput,Constants.FEEDER_SPEED); 
-    }
+  public FrisbeeFlinger(int feederID, int shooterID) {
+    feederMotor = new DTTalonSRX(feederID);
+    shooterMotor = new DTTalonSRX(shooterID);
+  }
 
-    public void stopFeeder(){
-        feederMotor.set(TalonSRXControlMode.PercentOutput,0);
-    }
+  public void spinShooter(double speed) {
+    shooterMotor.setPercentOutput(speed);
+  }
+
+  public void stopShooter() {
+    shooterMotor.neutralOutput();
+  }
+
+  public void spinFeeder() {
+    feederMotor.setPercentOutput(Constants.FEEDER_SPEED);
+  }
+
+  public void stopFeeder() {
+    feederMotor.neutralOutput();
+  }
+
+  @Override
+  public void initSendable(SendableBuilder builder) {}
+
+  @Override
+  public void close() throws Exception {}
 }
