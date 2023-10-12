@@ -9,9 +9,9 @@ import frc.robot.commands.FeederCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.FrisbeeFlinger;
+
 import org.victorrobotics.dtlib.DTRobot;
 import org.victorrobotics.dtlib.command.DTCommand;
-import org.victorrobotics.dtlib.command.DTCommandScheduler;
 import org.victorrobotics.dtlib.command.DTNullCommand;
 import org.victorrobotics.dtlib.controller.DTXboxController;
 
@@ -54,7 +54,7 @@ public class Robot extends DTRobot {
                                                                                   .squareKeepSign(),
                                                  controller.rightStickX.squareKeepSign(),
                                                  controller.leftBumper.and(controller.rightBumper));
-    DTCommandScheduler.setDefaultCommand(driveTrain, driveCommand);
+    driveTrain.setDefaultCommand(driveCommand);
 
     controller.rightTrigger.whenGreaterOrEqual(0.5)
                            .whileTrue(new ShooterCommand(frisbeeFlinger));

@@ -1,9 +1,9 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import org.victorrobotics.dtlib.hardware.phoenix5.DTTalonSRX;
 import org.victorrobotics.dtlib.subsystem.DTSubsystem;
+
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 public class DriveTrain extends DTSubsystem {
   private final DifferentialDrive drive;
@@ -20,9 +20,6 @@ public class DriveTrain extends DTSubsystem {
   public void drive(double forwardSpeed, double rotation) {
     drive.arcadeDrive(forwardSpeed, rotation);
   }
-
-  @Override
-  public void initSendable(SendableBuilder builder) {}
 
   @Override
   public void close() throws Exception {}

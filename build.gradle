@@ -51,6 +51,13 @@ dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
 
+    FileCollection dtlibJar = files('lib/dtlib.jar')
+    if (dtlibJar.getSingleFile().exists()) {
+        implementation dtlibJar
+    } else {
+        // implementation 'org.victorrobotics.dtlib:dtlib-java:0.1'
+    }
+
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
     roborioDebug wpi.java.vendor.jniDebug(wpi.platforms.roborio)
 

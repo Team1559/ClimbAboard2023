@@ -1,7 +1,7 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.util.sendable.SendableBuilder;
 import frc.robot.Constants;
+
 import org.victorrobotics.dtlib.hardware.phoenix5.DTTalonSRX;
 import org.victorrobotics.dtlib.subsystem.DTSubsystem;
 
@@ -30,9 +30,6 @@ public class FrisbeeFlinger extends DTSubsystem {
   public void stopFeeder() {
     feederMotor.neutralOutput();
   }
-
-  @Override
-  public void initSendable(SendableBuilder builder) {}
 
   @Override
   public void close() throws Exception {}
